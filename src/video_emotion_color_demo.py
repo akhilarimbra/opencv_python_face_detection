@@ -30,14 +30,18 @@ happy = 0
 surprise = 0
 neutral = 0
 
+createdTime = int(time.time())
+tutorEmail = 'manjumanojvarier@gmail.com'
+
 db.collection('EmotionDetection').document(dbRootKey).set({
     'angry': angry,
     'sad': sad,
     'happy': happy,
     'surprise': surprise,
     'neutral': neutral,
-    'created': int(time.time()),
-    'updated': int(time.time())
+    'created': createdTime,
+    'updated': createdTime,
+    'tutorEmail': tutorEmail
 })
 
 # parameters for loading data and images
@@ -115,7 +119,9 @@ while True:
             'happy': happy,
             'surprise': surprise,
             'neutral': neutral,
-            'updated': int(time.time())
+            'created': createdTime,
+            'updated': int(time.time()),
+            'tutorEmail': tutorEmail
         })
 
         color = color.astype(int)
