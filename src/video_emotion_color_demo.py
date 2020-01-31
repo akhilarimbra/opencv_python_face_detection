@@ -18,7 +18,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 
 cred = credentials.Certificate(
-    '/Users/akhilarimbra/Desktop/firebase.json')
+    '/home/akhilarimbra/Desktop/firebase.json')
 default_app = firebase_admin.initialize_app(cred)
 db = firestore.client(default_app)
 
@@ -36,12 +36,13 @@ db.collection('EmotionDetection').document(dbRootKey).set({
     'happy': happy,
     'surprise': surprise,
     'neutral': neutral,
-    'created': int(time.time())
+    'created': int(time.time()),
+    'updated': int(time.time())
 })
 
 # parameters for loading data and images
-detection_model_path = '/Users/akhilarimbra/Desktop/face_classification/trained_models/detection_models/haarcascade_frontalface_default.xml'
-emotion_model_path = '/Users/akhilarimbra/Desktop/face_classification/trained_models/emotion_models/fer2013_mini_XCEPTION.102-0.66.hdf5'
+detection_model_path = '/home/akhilarimbra/Desktop/opencv_python_face_detection/trained_models/detection_models/haarcascade_frontalface_default.xml'
+emotion_model_path = '/home/akhilarimbra/Desktop/opencv_python_face_detection/trained_models/emotion_models/fer2013_mini_XCEPTION.102-0.66.hdf5'
 emotion_labels = get_labels('fer2013')
 
 # hyper-parameters for bounding boxes shape
@@ -113,7 +114,8 @@ while True:
             'sad': sad,
             'happy': happy,
             'surprise': surprise,
-            'neutral': neutral
+            'neutral': neutral,
+            'updated': int(time.time())
         })
 
         color = color.astype(int)
